@@ -1,73 +1,103 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { quiz } from '../reducers/quiz';
+
+const calculateGrade = (correctAnswersCount) => {
+  if (correctAnswersCount === 0) {
+    return 'F';
+  } else if (correctAnswersCount <= 3) {
+    return 'D';
+  } else if (correctAnswersCount <= 6) {
+    return 'C';
+  } else if (correctAnswersCount <= 9) {
+    return 'B';
+  } else {
+    return 'A ⭐️';
+  }
+};
 
 const Quiz = () => {
   const dispatch = useDispatch();
   const quizState = useSelector((state) => state.quiz);
 
-  // State to track if the answer has been submitted and if it's correct
   const [answerSubmitted, setAnswerSubmitted] = useState(false);
   const [isAnswerCorrect, setIsAnswerCorrect] = useState(false);
-  // State to track the correct answer index
   const [correctAnswerIndex, setCorrectAnswerIndex] = useState(null);
+  const [quizCompleted, setQuizCompleted] = useState(false);
 
-  const handleAnswerSubmit = (answerIndex) => {
-    // Do not proceed if the answer is already submitted
-    if (answerSubmitted) {
-      return;
-    }
+  const isLastQuestion = quizState.currentQuestionIndex === quizState.questions.length - 1;
 
-    const currentQuestion = quizState.questions[quizState.currentQuestionIndex];
+  const handleQuizCompletion = useCallback(() => {
+    const correctAnswersCount = quizState.answers.filter((answer) => answer.isCorrect).length;
+    const grade = calculateGrade(correctAnswersCount);
 
-    // Set the correct answer index
-    setCorrectAnswerIndex(currentQuestion.correctAnswerIndex);
-
-    dispatch(quiz.actions.submitAnswer({ questionId: currentQuestion.id, answerIndex }));
-    setAnswerSubmitted(true);
-  };
-
-  const goToNextQuestion = () => {
-    // Move to the next question
-    dispatch(quiz.actions.goToNextQuestion());
-    // Reset answerSubmitted, isAnswerCorrect, and correctAnswerIndex for the next question
-    setAnswerSubmitted(false);
-    setIsAnswerCorrect(false);
-    setCorrectAnswerIndex(null);
-  };
+    setQuizCompleted(true);
+  }, [quizState]);
 
   const restartQuiz = () => {
     dispatch(quiz.actions.restart());
     setAnswerSubmitted(false);
     setIsAnswerCorrect(false);
     setCorrectAnswerIndex(null);
+    setQuizCompleted(false);
   };
 
-  // useEffect to handle the submission logic only once when the component mounts
+  const handleAnswerSubmit = (answerIndex) => {
+    if (answerSubmitted || quizCompleted) {
+      return;
+    }
+
+    const currentQuestion = quizState.questions[quizState.currentQuestionIndex];
+    setCorrectAnswerIndex(currentQuestion.correctAnswerIndex);
+
+    dispatch(quiz.actions.submitAnswer({ questionId: currentQuestion.id, answerIndex }));
+    setAnswerSubmitted(true);
+
+    if (quizState.quizOver) {
+      handleQuizCompletion();
+    }
+  };
+
+  const goToNextQuestion = () => {
+    dispatch(quiz.actions.goToNextQuestion());
+    setAnswerSubmitted(false);
+    setIsAnswerCorrect(false);
+    setCorrectAnswerIndex(null);
+  };
+
   useEffect(() => {
-    if (answerSubmitted) {
+    if (answerSubmitted && quizState.answers.length > 0) {
       const currentQuestion = quizState.questions[quizState.currentQuestionIndex];
       setIsAnswerCorrect(
-        currentQuestion.correctAnswerIndex === quizState.answers.slice(-1)[0].answerIndex
+        currentQuestion.correctAnswerIndex === quizState.answers.slice(-1)[0]?.answerIndex
       );
-    }
-  }, [answerSubmitted, quizState]);
 
-  if (quizState.quizOver) {
-    return (
-      <div>
-        <h2>Quiz Completed!</h2>
-        <p>{`Correct Answers: ${quizState.answers.filter((answer) => answer.isCorrect).length}`}</p>
-        <p>{`Incorrect Answers: ${quizState.answers.filter((answer) => !answer.isCorrect).length}`}</p>
-        <button onClick={restartQuiz}>Restart Quiz</button>
-      </div>
-    );
+      if (isLastQuestion) {
+        handleQuizCompletion();
+      }
+    }
+  }, [answerSubmitted, quizState, isLastQuestion, handleQuizCompletion]);
+
+
+  const quizCompletionContent = (
+    <div>
+      <h2>Quiz Completed! ☄️</h2>
+      <p>{`Correct Answers: ${quizState.answers.filter((answer) => answer.isCorrect).length}/15`}</p>
+      <p>{`Your quiz grade: ${calculateGrade(
+        quizState.answers.filter((answer) => answer.isCorrect).length
+      )}`}</p>
+      <button onClick={restartQuiz}>Restart Quiz</button>
+    </div>
+  );
+
+  if (quizCompleted) {
+    return quizCompletionContent;
   }
 
   const currentQuestion = quizState.questions[quizState.currentQuestionIndex];
 
   return (
-    <div className='question-wrapper'>
+    <div>
       <p className='question-number'>{`Question ${quizState.currentQuestionIndex + 1} / ${quizState.questions.length}`}</p>
       <h3>{currentQuestion.questionText}</h3>
       {answerSubmitted && (
@@ -75,9 +105,9 @@ const Quiz = () => {
           <p>{`Your answer is ${isAnswerCorrect ? 'correct' : 'incorrect'}`}</p>
           <p>{`The correct answer is: ${currentQuestion.options[correctAnswerIndex]}`}</p>
           <img
-          src={currentQuestion.correctAnswerImageUrl}
-          alt={`Correct city - ${currentQuestion.options[correctAnswerIndex].text}`}
-        />
+            src={currentQuestion.correctAnswerImageUrl}
+            alt={`Correct city - ${currentQuestion.options[correctAnswerIndex].text}`}
+          />
         </div>
       )}
       {!answerSubmitted && (
@@ -94,8 +124,8 @@ const Quiz = () => {
         </ul>
       )}
       {answerSubmitted && (
-        <button onClick={goToNextQuestion}>
-          Next Question
+        <button onClick={isLastQuestion ? handleQuizCompletion : goToNextQuestion}>
+          {isLastQuestion ? 'Submit Quiz' : 'Next Question'}
         </button>
       )}
     </div>
