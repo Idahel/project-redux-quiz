@@ -65,7 +65,7 @@ li:hover {
 
 button {
   margin-top: 20px;
-  margin-left: 10px;
+  margin-left: auto; /* Automatically adjust the left margin */
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
@@ -75,6 +75,8 @@ button {
   border-radius: 4px;
   transition: background-color 0.3s;
   font-family: 'Tanker', sans-serif;
+  display: flex;
+  align-items: center;
 }
 
 button:hover {
