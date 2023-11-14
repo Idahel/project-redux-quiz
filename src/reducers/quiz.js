@@ -7,105 +7,105 @@ const questions = [
     questionText: "Which capital city is known as the 'City of Love' and is famous for the Eiffel Tower?",
     options: ["Rome", "Berlin", "Paris", "Madrid"],
     correctAnswerIndex: 2,
-    correctAnswerImageUrl: "/src/assets/Images/paris.jpeg"
+    correctAnswerImageUrl: "/src/assets/paris.jpeg"
   },
   {
     id: 2,
     questionText: "In which capital city can you find the ancient Acropolis?",
     options: ["Athens", "Istanbul", "Rome", "Cairo"],
     correctAnswerIndex: 0,
-    correctAnswerImageUrl: "/src/assets/Images/athens.jpeg"
+    correctAnswerImageUrl: "/src/assets/athens.jpeg"
   },
   {
     id: 3,
     questionText: "What is the capital of Japan, known for its advanced technology and cherry blossoms?",
     options: ["Seoul", "Tokyo", "Beijing", "Bangkok"],
     correctAnswerIndex: 1,
-    correctAnswerImageUrl: "/src/assets/Images/tokyo.jpeg"
+    correctAnswerImageUrl: "/src/assets/tokyo.jpeg"
   },
   {
     id: 4,
     questionText: "In which European capital can you visit the famous Red Square and the Kremlin?",
     options: ["Berlin", "Paris", "Moscow", "Rome"],
     correctAnswerIndex: 2,
-    correctAnswerImageUrl: "/src/assets/Images/moscow.jpeg"
+    correctAnswerImageUrl: "/src/assets/moscow.jpeg"
   },
   {
     id: 5,
     questionText: "Which capital city is located on the islands of Zealand and Amager?",
     options: ["Copenhagen", "Oslo", "Stockholm", "Helsinki"],
     correctAnswerIndex: 0,
-    correctAnswerImageUrl: "/src/assets/Images/copenhagen.jpeg"
+    correctAnswerImageUrl: "/src/assets/copenhagen.jpeg"
   },
   {
     id: 6,
     questionText: "In which capital can you explore the ancient ruins of the Colosseum?",
     options: ["Athens", "Rome", "Madrid", "Lisbon"],
     correctAnswerIndex: 1,
-    correctAnswerImageUrl: "/src/assets/Images/rome.jpeg"
+    correctAnswerImageUrl: "/src/assets/rome.jpeg"
   },
   {
     id: 7,
     questionText: "What is the capital city of Australia, known for its iconic Opera House?",
     options: ["Sydney", "Melbourne", "Canberra", "Brisbane"],
     correctAnswerIndex: 2,
-    correctAnswerImageUrl: "/src/assets/Images/canberra.jpeg"
+    correctAnswerImageUrl: "/src/assets/canberra.jpeg"
   },
   {
     id: 8,
     questionText: "In which Asian capital can you find the famous Petronas Towers?",
     options: ["Jakarta", "Kuala Lumpur", "Singapore", "Bangkok"],
     correctAnswerIndex: 1,
-    correctAnswerImageUrl: "/src/assets/Images/kualalumpur.jpeg"
+    correctAnswerImageUrl: "/src/assets/kualalumpur.jpeg"
   },
   {
     id: 9,
     questionText: "Which capital city is famous for its historic canals, bicycles, and Anne Frank's house?",
     options: ["Brussels", "Amsterdam", "Prague", "Vienna"],
     correctAnswerIndex: 1,
-    correctAnswerImageUrl: "/src/assets/Images/amsterdam.jpeg"
+    correctAnswerImageUrl: "/src/assets/amsterdam.jpeg"
   },
   {
     id: 10,
     questionText: "In which South American capital can you experience the Carnival festival?",
     options: ["Buenos Aires", "Rio de Janeiro", "Lima", "Bogotá"],
     correctAnswerIndex: 1,
-    correctAnswerImageUrl: "/src/assets/Images/RiodeJaneiro.jpeg"
+    correctAnswerImageUrl: "/src/assets/RiodeJaneiro.jpeg"
   },
   {
     id: 11,
     questionText: "What is the capital of Canada, known for its impressive Parliament Hill?",
     options: ["Vancouver", "Toronto", "Ottawa", "Montreal"],
     correctAnswerIndex: 2,
-    correctAnswerImageUrl: "/src/assets/Images/Ottawa.jpeg"
+    correctAnswerImageUrl: "/src/assets/Ottawa.jpeg"
   },
   {
     id: 12,
     questionText: "In which European capital can you find the Little Mermaid statue?",
     options: ["Oslo", "Copenhagen", "Stockholm", "Helsinki"],
     correctAnswerIndex: 1,
-    correctAnswerImageUrl: "/src/assets/Images/copenhagen 2.jpeg"
+    correctAnswerImageUrl: "/src/assets/copenhagen 2.jpeg"
   },
   {
     id: 13,
     questionText: "Which capital city is famous for its historical sites, including the Vatican City?",
     options: ["Rome", "Madrid", "Athens", "Paris"],
     correctAnswerIndex: 0,
-    correctAnswerImageUrl: "/src/assets/Images/rome 2.jpeg"
+    correctAnswerImageUrl: "/src/assets/rome 2.jpeg"
   },
   {
     id: 14,
     questionText: "In which African capital can you explore the pyramids of Giza?",
     options: ["Cairo", "Nairobi", "Johannesburg", "Accra"],
     correctAnswerIndex: 0,
-    correctAnswerImageUrl: "/src/assets/Images/cairo.jpeg"
+    correctAnswerImageUrl: "/src/assets/cairo.jpeg"
   },
   {
     id: 15,
     questionText: "What capital city is the home of the iconic Big Ben?",
     options: ["Paris", "Berlin", "London", "Dublin"],
     correctAnswerIndex: 2,
-    correctAnswerImageUrl: "/src/assets/Images/london.jpg"
+    correctAnswerImageUrl: "/src/assets/london.jpg"
   }
 ];
 
