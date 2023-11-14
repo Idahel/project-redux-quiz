@@ -20,8 +20,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px;
-}
+  margin: 10px;}
 
 h1 {
 text-align: center;
@@ -71,7 +70,7 @@ button:hover {
 }
 
 img {
-  max-width: 500px;
+  max-width: 70%;
   height: auto;
   border: 4px solid #D2BBF2;
 }
@@ -87,5 +86,8 @@ img {
 
   h1 {
     font-size: 45px;
+  }
+  img {
+    max-width: 500px;
   }
 }
