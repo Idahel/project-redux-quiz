@@ -5,9 +5,87 @@
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --main-width-desktop: 60%;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+  font-family: 'Tanker', sans-serif;
+}
+
+/* Add your styling here */
+body {
+  font-family: 'Tanker', sans-serif;
+  letter-spacing: 1px;
+  background-color: #F2EA79;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+h1 {
+text-align: center;
+}
+
+.question-number {
+  text-align: end;
+  color: #F26E50; 
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  cursor: pointer;
+  margin: 10px;
+  padding: 10px;
+  border: 2px solid #F26E50;
+  border-radius: 4px;
+  background-color: #D2BBF2;
+  transition: background-color 0.3s;
+}
+
+li:hover {
+  background-color: #F26E50;
+  border: 1px solid #D2BBF2;
+}
+
+button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #F26E50;
+  color: #F2EA79;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  font-family: 'Tanker', sans-serif;
+}
+
+button:hover {
+  background-color: #F2EA79;
+  color: #F26E50;
+}
+
+img {
+  max-width: 500px;
+  height: auto;
+  border: 4px solid #D2BBF2;
+}
+
+@media (min-width: 675px) {
+  body {
+    margin: 30px; 
+  }
+
+  .App {
+    width: var(--main-width-desktop);
+  }
+
+  h1 {
+    font-size: 45px;
+  }
 }
